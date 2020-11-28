@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+      
+        <div id="main_container">
+           
+            <div id="top_Pomodoro">
+                <p id="minutes">25</p>
+                <p>:</p>
+                <p id="secondes">00</p>
+            </div>
+            <div id="bottom_Pomodoro">
+                <button id="start">Start</button>
+                <button id="stop">Stop</button>
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        var start = document.getElementById("start");
+        var stop = document.getElementById("stop");
+        var reset = document.getElementById("reset");
+
+        var minutes = document.getElementById("minutes");
+        var secondes = document.getElementById("secondes");
+        var intervalTimer;
+
+        //Link le boutton Start à la fonction "chronoCountDown"
+
+        start.addEventListener('click', function () {
+            if (intervalTimer === undefined) {
+                intervalTimer = setInterval(chronoCountDown, 1000)
+            }
+        });
+
+        //fonction auto-invoquée pour reset le chrono
+        reset.addEventListener('click', function () {
+            secondes.innerText = "00";
+            minutes.innerText = 25;
+            intervalTimer = clearInterval(intervalTimer, 0000);
+        });
+
+        //Fonction auto-invoquée qui fige le chrono là où il est 
+        stop.addEventListener('click', function () {
+
+            intervalTimer = clearInterval(intervalTimer, 0000);
+        });
+
+        //Moteur du chronometre
+
+        function chronoCountDown() {
+            if (secondes.innerText != 0) {
+                secondes.innerText--;
+            } else if (minutes.innertext != 0 && secondes.innerText == 0) {
+                secondes.innerText = 59;
+                minutes.innerText--;
+            }
+        };
+
+
+    </script>
+</body>
+
+</html>
