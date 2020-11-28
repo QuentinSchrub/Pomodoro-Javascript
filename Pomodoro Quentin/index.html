@@ -9,9 +9,8 @@
 
 <body>
     <main>
-      
+
         <div id="main_container">
-           
             <div id="top_Pomodoro">
                 <p id="minutes">25</p>
                 <p>:</p>
@@ -34,28 +33,27 @@
         var secondes = document.getElementById("secondes");
         var intervalTimer;
 
-        //Link le boutton Start à la fonction "chronoCountDown"
-
+        // Link le boutton Start à la fonction "chronoCountDown"
         start.addEventListener('click', function () {
             if (intervalTimer === undefined) {
                 intervalTimer = setInterval(chronoCountDown, 1000)
             }
         });
 
-        //fonction auto-invoquée pour reset le chrono
+        // Fonction auto-invoquée pour reset le chrono
         reset.addEventListener('click', function () {
             secondes.innerText = "00";
             minutes.innerText = 25;
-            intervalTimer = clearInterval(intervalTimer, 0000);
+            intervalTimer = clearInterval(intervalTimer);
         });
 
-        //Fonction auto-invoquée qui fige le chrono là où il est 
+        // Fonction auto-invoquée qui fige le chrono là où il est 
         stop.addEventListener('click', function () {
 
-            intervalTimer = clearInterval(intervalTimer, 0000);
+            intervalTimer = clearInterval(intervalTimer);
         });
 
-        //Moteur du chronometre
+        // Moteur du chronometre
 
         function chronoCountDown() {
             if (secondes.innerText != 0) {
